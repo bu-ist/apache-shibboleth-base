@@ -1,0 +1,34 @@
+version: '2'
+
+services:
+  shibboleth_sp:
+    #image: shib-sp-test
+    build: .
+    restart: always
+    links:
+      - phpbin
+    ports:
+      - "8000:80"
+    networks:
+      - phpapp
+    depends_on:
+      - phpbin
+    volumes:
+      - ../imp-sp-secrets:/run/secrets
+    environment:
+      sp_idp: "https://shib.bu.edu/idp/shibboleth"
+  phpbin:
+    build: php-ppoc/
+    restart: always
+    #environment:
+    networks:
+      - phpapp
+    
+#volumes:
+#  data:
+#    driver: local
+
+networks:
+  phpapp:
+    driver: bridge
+
