@@ -1,0 +1,10 @@
+#!/bin/sh
+#
+# Simple shell script to output all the variables
+#
+cat <<EOF 
+Content-type: text/plain
+
+EOF
+printenv
+exit
