@@ -35,7 +35,8 @@ EXPOSE 80
 # now we have our test SP configuration
 #COPY shibboleth /var/www/cgi-bin
 COPY printenv /var/www/cgi-bin/
-COPY shib_test.conf /etc/httpd/conf.d/shib_test.conf
+#COPY shib_test.conf /etc/httpd/conf.d/shib_test.conf
+COPY conf.d/ /etc/httpd/conf.d/
 
 ADD shibboleth-sp/ /etc/shibboleth/
 
