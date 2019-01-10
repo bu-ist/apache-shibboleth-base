@@ -22,6 +22,16 @@ COPY httpd-foreground /usr/bin/
 RUN mkdir -p /var/run/lock /var/lock/subsys \
   && chmod +x /etc/shibboleth/shibd-redhat /usr/bin/httpd-foreground
 
+# These private SP credentials are baked into the image because
+# they are only used for automated internal testing and limited attribute
+# release.  One should never do this for anything else.
+#
+# You can use these by adding the following environment variables to your container
+# ENV SHIB_SP_KEY /etc/shibboleth/internal-test-only/sp-key.pem
+# ENV SHIB_SP_CERT /etc/shibboleth/internal-test-only/sp-cert.pem
+#
+COPY internal-test-only/    /etc/shibboleth/internal-test-only/
+
 # These default paths are designed to fit with the default Docker secret approach - see 
 # docker-compose.yml for an example of mapping a volume for that location and 
 # docker-compose-secrets.yml for an example where the secret is referenced in the docker-compose
