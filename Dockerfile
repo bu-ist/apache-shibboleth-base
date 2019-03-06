@@ -46,6 +46,7 @@ EXPOSE 80
 #COPY shibboleth /var/www/cgi-bin
 COPY printenv /var/www/cgi-bin/
 #COPY shib_test.conf /etc/httpd/conf.d/shib_test.conf
+COPY httpd.conf /etc/httpd/conf/httpd.conf
 COPY conf.d/ /etc/httpd/conf.d/
 
 ADD shibboleth-sp/ /etc/shibboleth/
