@@ -1,0 +1,30 @@
+version: "2"
+services:
+  # The Apache + Shibboleth server configuration (aka what we want to test)
+  #
+  shibboleth_sp:
+    build: .
+    restart: always
+    links: 
+      - phpbin
+    ports:
+      - 80
+      - 443
+    environment:
+      sp_idp: "https://shib-qa.bu.edu/idp/shibboleth"
+      ALLOW_DOCKER_NETS: "true"
+
+  # The test phpbin backend.
+  #
+  phpbin:
+    build: test/phpbin/
+
+  # The system that is running the driver system
+  # The name is special for Docker HUB use
+  #
+  sut:
+    build: test/sut/
+    links:
+      - shibboleth_sp:testsp.bu.edu
+    volumes:
+      - ./test/results:/results
