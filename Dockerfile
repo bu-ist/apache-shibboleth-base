@@ -19,7 +19,7 @@ RUN yum -y update \
 
 COPY httpd-foreground /usr/bin/
 
-RUN mkdir -p /var/run/lock /var/lock/subsys \
+RUN mkdir -p /var/run/lock /var/lock/subsys /var/www/html/server \
   && chmod +x /etc/shibboleth/shibd-redhat /usr/bin/httpd-foreground
 
 # These private SP credentials are baked into the image because
@@ -48,6 +48,9 @@ COPY printenv /var/www/cgi-bin/
 #COPY shib_test.conf /etc/httpd/conf.d/shib_test.conf
 COPY httpd.conf /etc/httpd/conf/httpd.conf
 COPY conf.d/ /etc/httpd/conf.d/
+
+# /server/healthcheck stuff
+COPY healthcheck /var/www/html/server/healthcheck
 
 ADD shibboleth-sp/ /etc/shibboleth/
 
