@@ -13,7 +13,7 @@ MAINTAINER David King <dsmk@bu.edu>
 RUN yum -y update \
   && yum -y install wget epel-release \
   && wget http://download.opensuse.org/repositories/security://shibboleth/CentOS_7/security:shibboleth.repo -P /etc/yum.repos.d \
-  && yum -y install httpd shibboleth.x86_64 \
+  && yum -y install httpd shibboleth.x86_64 dos2unix \
   && rm /etc/shibboleth/sp-*.pem \
   && yum clean all
 
@@ -54,7 +54,7 @@ COPY healthcheck /var/www/html/server/healthcheck
 
 ADD shibboleth-sp/ /etc/shibboleth/
 
-RUN chmod +x /var/www/cgi-bin/*
+RUN chmod +x /var/www/cgi-bin/* && dos2unix /usr/bin/httpd-foreground
 
 # if we set the following variables then 
 CMD ["httpd-foreground"]
