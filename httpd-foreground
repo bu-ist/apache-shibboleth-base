@@ -13,6 +13,7 @@ if [ "x$sp_skip_update" = "x" ]; then
 
   sed "s#SP_ENTITY_ID#$sp_sp#" </etc/shibboleth/shibboleth2-template.xml \
     | sed "s#SHIB_SP_KEY#$SHIB_SP_KEY#" \
+    | sed "s#SP_HANDLER_URL#$SP_HANDLER_URL#" \
     | sed "s#SHIB_SP_CERT#$SHIB_SP_CERT#" \
     | sed "s#IDP_ENTITY_ID#$sp_idp#" >/etc/shibboleth/shibboleth2.xml
 

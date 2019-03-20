@@ -35,6 +35,7 @@
         security of your site. Stealing sessions via cookie theft is much easier with this disabled.
         -->
         <Sessions lifetime="28800" timeout="3600" relayState="ss:mem"
+                  handlerURL="SP_HANDLER_URL"
                   checkAddress="false" handlerSSL="false" cookieProps="http">
 
             <!--
