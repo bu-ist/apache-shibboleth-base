@@ -1,0 +1,1 @@
+This directory is where you would put the local Shibboleth SP secrets.  See the main README.md for more information.

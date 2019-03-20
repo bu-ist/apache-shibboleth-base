@@ -14,9 +14,9 @@ services:
     depends_on:
       - phpbin
     volumes:
-      - ../imp-sp-secrets:/run/secrets
+      - ./secrets/:/run/secrets
     environment:
-      sp_idp: "https://shib.bu.edu/idp/shibboleth"
+      sp_idp: "https://shib-test.bu.edu/idp/shibboleth"
   phpbin:
     build: test/phpbin/
     restart: always
