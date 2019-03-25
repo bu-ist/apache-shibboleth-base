@@ -55,7 +55,7 @@ COPY healthcheck /var/www/html/server/healthcheck
 
 ADD shibboleth-sp/ /etc/shibboleth/
 
-RUN chmod +x /var/www/cgi-bin/* && dos2unix /usr/bin/httpd-foreground
+RUN chmod +x /var/www/cgi-bin/* && dos2unix /usr/bin/httpd-foreground /var/www/cgi-bin/printenv
 
 # if we set the following variables then 
 CMD ["httpd-foreground"]
