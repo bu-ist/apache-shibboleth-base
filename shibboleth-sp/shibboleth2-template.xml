@@ -21,6 +21,7 @@
 
     <!-- The ApplicationDefaults element is where most of Shibboleth's SAML bits are defined. -->
     <ApplicationDefaults entityID="SP_ENTITY_ID"
+                         homeURL="SP_HOME_URL"
                          signing="true"
                          encryption="false"
                          REMOTE_USER="eppn persistent-id targeted-id">

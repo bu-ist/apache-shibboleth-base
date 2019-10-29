@@ -40,6 +40,7 @@ COPY internal-test-only/    /etc/shibboleth/internal-test-only/
 ENV SHIB_SP_KEY /run/secrets/SHIB_SP_KEY
 ENV SHIB_SP_CERT /run/secrets/SHIB_SP_CERT
 ENV SP_HANDLER_URL /Shibboleth.sso
+ENV SP_HOME_URL /
 
 EXPOSE 80
 
