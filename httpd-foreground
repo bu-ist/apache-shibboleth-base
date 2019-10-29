@@ -18,11 +18,15 @@ if [ "x$sp_skip_update" = "x" ]; then
     | sed "s#SHIB_SP_CERT#$SHIB_SP_CERT#" \
     | sed "s#IDP_ENTITY_ID#$sp_idp#" >/etc/shibboleth/shibboleth2.xml
 
-  # get the idp-metadata.xml automatically from the sp_idp location
-  wget --no-check-certificate "$sp_idp" -P /tmp
-  if [ -r "/tmp/shibboleth" ]; then
-    mv /tmp/shibboleth /etc/shibboleth/idp-metadata.xml
-  fi 
+  # get the idp-metadata.xml automatically only if not already provided
+  if [ -a "/prefetched-data/idp-metadata.xml" ]; then
+    cp /prefetched-data/idp-metadata.xml /etc/shibboleth/idp-metadata.xml
+  else
+    wget --no-check-certificate "$sp_idp" -P /tmp
+    if [ -r "/tmp/shibboleth" ]; then
+      mv /tmp/shibboleth /etc/shibboleth/idp-metadata.xml
+    fi
+  fi
 fi
 
 /etc/shibboleth/shibd-redhat start
