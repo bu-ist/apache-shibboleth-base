@@ -15,17 +15,15 @@ setup () {
 @test "base_server: Healthcheck (http)" {
   test_web http "$BUWEBHOST" /server/healthcheck
   assert_status 200
-  assert_backend healthcheck
   assert_contains OK
 }
 
 # This backend does not yet work on SSL connections
-#@test "base_server: Healthcheck (https)" {
-#  test_web https "$BUWEBHOST" /server/healthcheck
-#  assert_status 200
-#  assert_backend healthcheck
-#  assert_contains OK
-#}
+@test "base_server: Healthcheck (https)" {
+  test_web https "$BUWEBHOST" /server/healthcheck
+  assert_status 200
+  assert_contains OK
+}
 
 #@test "base_server: backend test (http)" {
 #  [ "x$TEST_BASE" = x ] && skip "only done when testing base images"

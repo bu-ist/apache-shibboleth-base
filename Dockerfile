@@ -13,7 +13,7 @@ MAINTAINER David King <dsmk@bu.edu>
 RUN yum -y update \
   && yum -y install wget epel-release \
   && wget http://download.opensuse.org/repositories/security://shibboleth/CentOS_7/security:shibboleth.repo -P /etc/yum.repos.d \
-  && yum -y install httpd shibboleth.x86_64 dos2unix \
+  && yum -y install httpd mod_ssl shibboleth.x86_64 dos2unix \
   && rm /etc/shibboleth/sp-*.pem \
   && yum clean all
 
@@ -43,6 +43,7 @@ ENV SP_HANDLER_URL /Shibboleth.sso
 ENV SP_HOME_URL /
 
 EXPOSE 80
+EXPOSE 443
 
 # now we have our test SP configuration
 #COPY shibboleth /var/www/cgi-bin
@@ -57,6 +58,8 @@ COPY healthcheck /var/www/html/server/healthcheck
 ADD shibboleth-sp/ /etc/shibboleth/
 
 RUN chmod +x /var/www/cgi-bin/* && dos2unix /usr/bin/httpd-foreground /var/www/cgi-bin/printenv
+
+VOLUME /var/www/html
 
 # if we set the following variables then 
 CMD ["httpd-foreground"]
