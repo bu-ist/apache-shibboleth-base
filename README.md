@@ -1,5 +1,11 @@
 # shib-sp-test
-Simple Shibboleth SP test
+
+
+Simple Shibboleth SP base image to be used by services that need authentication.
+
+As of December 2020 it is being used for phpbin {prod and non-prod} and static Non-WordPress Content Sites {non-prod}.
+
+The SSL support is designed to be used by backend servers so it uses it own self-signed certificates.
 
 ## How to build a set of key and certificates
 
