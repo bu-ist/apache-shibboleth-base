@@ -14,6 +14,7 @@ RUN yum -y update \
   && yum -y install wget epel-release \
   && wget http://download.opensuse.org/repositories/security://shibboleth/CentOS_7/security:shibboleth.repo -P /etc/yum.repos.d \
   && yum -y install httpd shibboleth.x86_64 dos2unix \
+  && yum -y install mod_ssl \
   && rm /etc/shibboleth/sp-*.pem \
   && yum clean all
 
@@ -50,6 +51,7 @@ ENV SP_HOME_URL /
 # Apache Config:
 
 EXPOSE 80
+EXPOSE 443
 
 COPY httpd.conf /etc/httpd/conf/httpd.conf
 COPY conf.d/ /etc/httpd/conf.d/
