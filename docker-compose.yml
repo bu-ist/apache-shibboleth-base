@@ -2,33 +2,13 @@ version: '2'
 
 services:
   shibboleth_sp:
-    #image: shib-sp-test
     build: .
     restart: always
-    links:
-      - phpbin
     ports:
       - "8000:80"
-    networks:
-      - phpapp
-    depends_on:
-      - phpbin
+      - "443:443"
     volumes:
       - ./secrets/:/run/secrets
     environment:
       sp_idp: "https://shib-test.bu.edu/idp/shibboleth"
-  phpbin:
-    build: test/phpbin/
-    restart: always
-    #environment:
-    networks:
-      - phpapp
-    
-#volumes:
-#  data:
-#    driver: local
-
-networks:
-  phpapp:
-    driver: bridge
-
+      SERVER_NAME: "localhost"
