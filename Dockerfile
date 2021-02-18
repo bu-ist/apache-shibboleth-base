@@ -56,6 +56,9 @@ EXPOSE 443
 COPY httpd.conf /etc/httpd/conf/httpd.conf
 COPY conf.d/ /etc/httpd/conf.d/
 
+# Set Time Zone:
+RUN rm /etc/localtime && ln -s /usr/share/zoneinfo/America/New_York /etc/localtime
+
 
 COPY healthcheck /var/www/html/server/healthcheck
 
