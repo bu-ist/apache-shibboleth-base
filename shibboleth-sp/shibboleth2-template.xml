@@ -35,7 +35,7 @@
         Note that while we default checkAddress to "false", this has a negative impact on the
         security of your site. Stealing sessions via cookie theft is much easier with this disabled.
         -->
-        <Sessions lifetime="28800" timeout="3600" relayState="ss:mem"
+        <Sessions lifetime="28800" timeout="28800" relayState="ss:mem"
                   handlerURL="SP_HANDLER_URL"
                   checkAddress="false" handlerSSL="false" cookieProps="http">
 
