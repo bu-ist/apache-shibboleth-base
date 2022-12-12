@@ -10,9 +10,10 @@ MAINTAINER David King <dsmk@bu.edu>
 
 #ENV JRE_HOME /opt/jre1.8.0_60
 
+COPY shibboleth.repo /etc/yum.repos.d/
+
 RUN yum -y update \
   && yum -y install wget epel-release \
-  && wget http://download.opensuse.org/repositories/security://shibboleth/CentOS_7/security:shibboleth.repo -P /etc/yum.repos.d \
   && yum -y install httpd shibboleth.x86_64 dos2unix \
   && yum -y install mod_ssl \
   && rm /etc/shibboleth/sp-*.pem \
