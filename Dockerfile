@@ -67,4 +67,6 @@ ADD shibboleth-sp/ /etc/shibboleth/
 
 RUN chmod +x /var/www/cgi-bin/* && dos2unix /entrypoints/httpd-foreground /var/www/cgi-bin/printenv
 
+HEALTHCHECK --interval=10s --retries=1 CMD pgrep -x shibd || exit 1
+
 ENTRYPOINT ["/entrypoints/httpd-foreground"]
